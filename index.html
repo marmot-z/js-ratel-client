@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="css/client.css">
+</head>
+<body>
+    <!--答应我，别再写css了好嘛，快吐了-->
+    <div id="terminal">
+        <div id="content">
+            <B>Welcome ratel websocket client.</B></br>
+            </br>
+            Select ratel server(select existing server or input your customize server address).</br>
+        </div>
+        <div id="prefix">[ratel]$ > </div>
+        <input id="input" type="text"/>
+    </div>
+</body>
+<script type="text/javascript" src="js/assets/protobuf.min.js"></script>
+<script type="text/javascript" src="js/enum.js"></script>
+<script type="text/javascript" src="js/poker.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/protocol.js"></script>
+<script type="text/javascript" src="js/handler/handler.js"></script>
+<script type="text/javascript" src="js/panel.js"></script>
+<script type="text/javascript" src="js/wsClient.js"></script>
+<script type="text/javascript">
+    var existingServerList = [
+        "47.103.16.48:1024:Demo[V1.2.6]",
+        "121.5.140.133:1025:Nico[v1.2.7]"
+    ];
+
+    function selectServer(e) {
+        if (e.keyCode != 13) {
+            return;
+        }
+
+        var input = document.querySelector("#input");
+        var s = input.value.trim();
+        input.value = "";
+        if (s == "" || s === null || typeof s === "undefined") {
+            document.querySelector("#content").innerHTML += "Invalid input, please input again.</br>";
+            return;
+        }
+
+        if (s.length <= Math.ceil(existingServerList.length / 10)) {
+            try {
+                var i = parseInt(s);
+                if (!Number.isNaN(i)) {
+                    if (i > 0 && i <= existingServerList.length) {
+                        var splits = existingServerList[i - 1].split(":");
+                        start(splits[0], splits[1]);
+                    } else {
+                        document.querySelector("#content").innerHTML += "Invalid option " + i + ", please input again.</br>";
+                        return;
+                    }
+                }
+            } catch (e) {
+                console.error("Program error, abnormal exit.", e);
+                return;
+            }
+        } else {
+            var pattern = /\w+:\d{1,5}/g;
+            if (pattern.test(s)) {
+                var splits = s.split(":");
+                start(splits[0], splits[1]);
+            } else {
+                document.querySelector("#content").innerHTML += "Invalid server address : " + s + ", please input again.</br>";
+                return;
+            }
+        }
+
+        input.removeEventListener("keypress", selectServer, false);
+    }
+
+    function start(host, port) {
+        if (typeof host === "undefined") {
+            host = "127.0.0.1";
+        }
+        if (typeof port === "undefined") {
+            port = 1024;
+        }
+
+        document.querySelector("#content").innerHTML += "Connect to ws://" + host + ":" + port + "/ratel .</br></br>";
+
+        window.wsClient = new WsClient("ws://" + host + ":" + port + "/ratel")
+    }
+
+    function init() {
+        var contentDiv = document.querySelector("#content");
+        existingServerList.forEach((server, i) => {
+            contentDiv.innerHTML += (i + 1) + ". &nbsp;" + server + "</br>";
+        });
+
+        var input = document.querySelector("#input");
+        input.addEventListener("keypress", selectServer, false);
+        input.focus();
+    }
+
+    window.onload = init;
+</script>
+</html>
