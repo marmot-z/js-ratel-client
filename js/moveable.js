@@ -14,8 +14,7 @@
     };
 
     Moveable.prototype.getWrapperPosition = function() {
-        return [parseInt(window.getComputedStyle(this.wrapperElement)["left"]),
-                parseInt(window.getComputedStyle(this.wrapperElement)["top"])];
+        return [this.wrapperElement.offsetLeft, this.wrapperElement.offsetTop];
     };
 
     Moveable.prototype.registerEvent = function() {

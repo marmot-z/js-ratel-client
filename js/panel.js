@@ -1,9 +1,5 @@
-/**
- * 面板类
- * 只包含面板中的视图显示、输入逻辑，不包含其它逻辑（包括发送）
- */
 ;(function(window, EventWrapper, Toggleable, Moveable, Utils, POKER) {
-    // 'use strict';
+    'use strict';
 
     function Panel() {
         this.eventWrapper = new EventWrapper();

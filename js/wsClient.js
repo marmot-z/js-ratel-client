@@ -121,6 +121,12 @@
 			.then(encodeValue => this.socket.send(encodeValue));
 	};
 
+	WsClient.prototype.close = function() {
+		this.socket.close();
+		this.panel.append("Bye.");
+		this.panel.hide();
+	};
+
 	// --------------- getter/setter ------------------------
 
 	WsClient.prototype.setUserName = function(nickName) {
