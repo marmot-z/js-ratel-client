@@ -1,8 +1,19 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    overflow:hidden;
+}
+
 div, input {
     background: black;
     color: white;
     border: none;
-    font-family: fangsong;
+    font-family: Consolas;
+    font-size: small;
 }
 
 input:focus  {
@@ -10,13 +21,26 @@ input:focus  {
 }
 
 #terminal {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
     width: 500px;
-    height: 400px;
+    height: 452px;
+    margin: 0;
+    font-family: Consolas;
+}
+
+#bar {
+    height: 20px;
+    line-height: 20px;
+    background-color: #545252;
+    cursor: move;
+    user-select: none;
 }
 
 #content {
     width: 500px;
-    height: 600px;
+    height: 400px;
     overflow-y: auto;
     word-wrap:break-word;
 }
@@ -41,13 +65,12 @@ input:focus  {
 #prefix {
     float: left;
     height: 32px;
-    width: 80px;
+    width: 75px;
     line-height: 32px;
 }
 
 #input {
     float: left;
     height: 30px;
-    width: 416px;
-    font-size: 17px;
+    width: 421px;
 }

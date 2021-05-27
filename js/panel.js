@@ -2,39 +2,22 @@
  * 面板类
  * 只包含面板中的视图显示、输入逻辑，不包含其它逻辑（包括发送）
  */
-;(function(window, Utils, POKER) {
+;(function(window, EventWrapper, Toggleable, Moveable, Utils, POKER) {
     // 'use strict';
-
-    function EventWrapper() {
-        this.eventHandlers = {};
-    }
-
-    EventWrapper.prototype.addEventListener = function(node, event, handler, capture) {
-        if (typeof capture === 'undefined') capture = false;
-
-        if (!(event in this.eventHandlers)) {
-            this.eventHandlers[event] = []
-        }
-
-        this.eventHandlers[event].push({ node: node, handler: handler, capture: capture })
-        node.addEventListener(event, handler, capture);
-    };
-
-    EventWrapper.prototype.removeEventListener = function(targetNode, event) {
-        this.eventHandlers[event]
-            .filter(obj => obj.node === targetNode)
-            .forEach(obj => obj.node.removeEventListener(event, obj.handler, obj.capture));
-
-        this.eventHandlers[event] = this.eventHandlers[event].filter(obj => obj.node !== targetNode);
-    };
-
-    // ----------------------------------------------------------------
 
     function Panel() {
         this.eventWrapper = new EventWrapper();
+        this.terminalDiv = document.querySelector("#terminal");
         this.contentDiv = document.querySelector("#content");
         this.inputBox = document.querySelector("#input");
+
+        Moveable.call(this, document.querySelector("#bar"), this.terminalDiv);
+        Toggleable.call(this, this.terminalDiv);
+        Toggleable.prototype.triggerBy.call(this, "keyup", togglePredicate);
     }
+
+    Utils.extend(Moveable, Toggleable);
+    Utils.extend(Panel, Moveable);
 
     var prefix = "[ratel]$ > ";
 
@@ -100,5 +83,16 @@
         });
     };
 
+    var arrowUpCode = 38;
+    var arrowDownCode = 40;
+
+    function togglePredicate(e, type) {
+        var keyCode = e.keyCode;
+        var ctrlKey = e.ctrlKey;
+
+        // ctrl + ↑/↓
+        return ctrlKey && (type == "show" ? keyCode === arrowUpCode : keyCode === arrowDownCode);
+    }
+
     window.Panel = Panel;
-} (this, this.Utils, this.POKER));
+} (this, this.EventWrapper, this.Toggleable, this.Moveable, this.Utils, this.POKER));

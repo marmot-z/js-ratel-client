@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>百度一下，你就知道</title>
     <meta charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="css/client.css">
+    <link type="image/x-icon" rel="shortcut icon" href="favicon.ico" />
 </head>
 <body>
+    <iframe src="https://www.baidu.com" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
     <!--答应我，别再写css了好嘛，快吐了-->
     <div id="terminal">
+        <div id="bar">&nbsp;js-ratel-client v1.0.0</div>
         <div id="content">
             <B>Welcome ratel websocket client.</B></br>
             </br>
@@ -22,11 +26,14 @@
 <script type="text/javascript" src="js/utils.js"></script>
 <script type="text/javascript" src="js/protocol.js"></script>
 <script type="text/javascript" src="js/handler/handler.js"></script>
+<script type="text/javascript" src="js/eventWrapper.js"></script>
+<script type="text/javascript" src="js/toggleable.js"></script>
+<script type="text/javascript" src="js/moveable.js"></script>
 <script type="text/javascript" src="js/panel.js"></script>
 <script type="text/javascript" src="js/wsClient.js"></script>
 <script type="text/javascript">
     var existingServerList = [
-        "47.103.16.48:1024:Demo[V1.2.6]",
+        "47.103.16.48:1025:Demo[V1.2.7]",
         "121.5.140.133:1025:Nico[v1.2.7]"
     ];
 
@@ -56,7 +63,7 @@
                     }
                 }
             } catch (e) {
-                console.error("Program error, abnormal exit.", e);
+                console.error("Program error, abnormal exit.\n", e);
                 return;
             }
         } else {
