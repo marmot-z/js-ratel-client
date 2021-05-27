@@ -36,11 +36,11 @@
             LEVEL_BIG_KING: new Level(17, "X", "X", "x")
         },
         TYPES: {
-            BLANK: new Type("BLANK", " "),
-            DIAMOND: new Type("DIAMOND", "♦"),
-            CLUB: new Type("CLUB", "♣"),
-            SPADE: new Type("SPADE", "♠"),
-            HEART: new Type("HEART", "♥")
+            BLANK: new Type("BLANK", "_"),
+            DIAMOND: new Type("DIAMOND", "_"),
+            CLUB: new Type("CLUB", "_"),
+            SPADE: new Type("SPADE", "_"),
+            HEART: new Type("HEART", "_")
         },
         levelContains: (alias) => {
             for (var a in POKER.LEVELS) {

@@ -42,13 +42,13 @@
 
         for (var i in pokers) {
             if (i == 0) s += "│";
-            s += POKER.LEVELS[pokers[i].level].symbol + (POKER.LEVELS[pokers[i].level].symbol.length == 1 ? " " : "") + "|";
+            s += POKER.LEVELS[pokers[i].level].symbol + (POKER.LEVELS[pokers[i].level].symbol.length == 1 ? " " : "") + "│";
         }
         s += "\n";
 
         for (var i in pokers) {
             if (i == 0) s += "│";
-            s += POKER.TYPES[pokers[i].type].symbol + " |";
+            s += POKER.TYPES[pokers[i].type].symbol + " │";
         }
         s += "\n";
 
