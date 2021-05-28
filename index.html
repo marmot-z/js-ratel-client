@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>百度一下，你就知道</title>
+    <title id='headTitle'></title>
     <meta charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="css/client.css">
     <link type="text/css" rel="stylesheet" href="css/console.css">
     <link rel="stylesheet" href="libs/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link type="image/x-icon" rel="shortcut icon" href="favicon.ico" />
+    <link type="image/x-icon" rel="shortcut icon" />
 </head>
 <body>
-    <iframe src="https://www.baidu.com" width="100%" height="100%" scrolling="no" frameborder="0" style="position: absolute;"></iframe>
+    <iframe id="site" width="100%" height="100%" scrolling="no" frameborder="0" style="position: absolute;"></iframe>
+
     <!--chrome console ui-->
     <div id="console">
         <div class="tools" >
@@ -18,8 +19,8 @@
                 <i style="margin-left:10px" class="fa fa-clone" aria-hidden="true"></i>&nbsp; &nbsp; 
                 <span class="split"></span>
             </div>
-            <div class="options" style="border-bottom: 2px #2b7dda solid;">Elements</div>
-            <div class="options">Console</div>
+            <div class="options" style="border-bottom: 2px #2b7dda solid;" onclick="toVue()">Elements</div>
+            <div class="options" onclick="toBaidu()">Console</div>
             <div class="options">Sources</div>
             <div class="options">Network</div>
             <div class="options">Application</div>
@@ -35,7 +36,7 @@
                 <span class="split"></span>
             </div>
             <div style="float:right;margin-right:-13px">
-                <div class="options"><i class="fa fa-times-circle" aria-hidden="true" style="color:red; border:1px #ccc solid; padding: 3px 6px 3px 6px;border-radius: 3px;"> <span style="color:#666">1</span></i> <i class="fa fa-commenting" aria-hidden="true" style="color:rgb(37, 107, 211); border:1px #ccc solid; padding: 3px 6px 3px 6px;border-radius: 3px;"> <span style="color:#666">83</span></i></div>
+                <div class="options"><i class="fa fa-times-circle" aria-hidden="true" style="color:red; border:1px #ccc solid; padding: 3px 6px 3px 6px;border-radius: 3px;"> <span style="color:#666;font-family: Arial;">1</span></i> <i class="fa fa-commenting" aria-hidden="true" style="color:rgb(37, 107, 211); border:1px #ccc solid; padding: 3px 6px 3px 6px;border-radius: 3px;"> <span style="color:#666;font-family: Arial;">83</span></i></div>
             </div>
         </div>
         <div class="tools" >
@@ -62,7 +63,7 @@
                 <span class="split" style="margin-left:10px"></span>
             </div>
             <div style="float:left;margin-right:20px">
-                <div class="options"><i class="fa fa-commenting" aria-hidden="true" style="color:rgb(37, 107, 211); border:1px #ccc solid; padding: 3px 6px 3px 6px;border-radius: 3px;"> <span style="color:#666">113 Issues</span></i></div>
+                <div class="options"><i class="fa fa-commenting" aria-hidden="true" style="color:rgb(37, 107, 211); border:1px #ccc solid; padding: 3px 6px 3px 6px;border-radius: 3px;"> <span style="color:#666;font-family: Arial, Helvetica, sans-serif;">113 Issues</span></i></div>
             </div>
             <div class="options" style="float:right;font-size: 15px;color:#555">
                 <i class="fa fa-cog" aria-hidden="true"></i>
@@ -72,12 +73,12 @@
             </div>
         </div>
         <div id="terminal">
-            <div id="bar">&nbsp;js-ratel-client v1.0.0</div>
+            <div id="bar">js-ratel-client v1.0.0</div>
             <div id="content">
                 <span>Welcome ratel websocket client.</span></br>
                 Select ratel server(select existing server or input your customize server address).</br>
             </div>
-            <div id="prefix"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+            <div id="prefix"><i class="fa fa-angle-right" aria-hidden="true" style='color:#2877d2;font-weight:bold'></i></div>
             <input id="input" type="text"/>
         </div>
     </div>
@@ -94,6 +95,7 @@
 <script type="text/javascript" src="js/panel.js"></script>
 <script type="text/javascript" src="js/wsClient.js"></script>
 <script type="text/javascript" src="js/abby.js"></script>
+
 <script type="text/javascript">
     var existingServerListApis = [
         "https://raw.githubusercontent.com/ainilili/ratel/master/serverlist.json",
@@ -161,8 +163,18 @@
 
         window.wsClient = new WsClient("ws://" + host + ":" + port + "/ratel")
     }
-
+    function toVue(){
+        $("#site").set("src", "https://vuejs.org/");
+        $("#headTitle").html("Vue.js")
+        document.querySelector("link[rel*='icon']").href = "favicon-vue.png";
+    }
+    function toBaidu(){
+        $("#site").set("src", "https://baidu.com/");
+        $("#headTitle").html("百度一下，你就知道")
+        document.querySelector("link[rel*='icon']").href = "favicon.ico";
+    }
     function init() {
+        toBaidu()
         var inited = false
         existingServerListApis.forEach((api, i) => {
             $.get(api,

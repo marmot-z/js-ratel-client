@@ -15,7 +15,7 @@
     Utils.extend(Moveable, Toggleable);
     Utils.extend(Panel, Moveable);
 
-    var prefix = '<div id="prefix" style="overflow:hidden;width:100%"><i class="fa fa-angle-right" aria-hidden="true" style="padding-right:5px"></i>';
+    var prefix = '<div id="prefix" style="overflow:hidden;width:100%"><i class="fa fa-angle-right" aria-hidden="true" style="padding-right:5px;color:#2162ac"></i>';
 
     Panel.prototype.append = function(str) {
         var split = str.split("\n");

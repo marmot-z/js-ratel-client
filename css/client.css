@@ -9,10 +9,10 @@ body {
 }
 
 div, input {
-    background: black;
-    color: white;
+    /* background: black;
+    color: white; */
     border: none;
-    font-family: "PingFang SC";
+    font-family: "PingFang SC", Helvetica, sans-serif, Arial;
     font-size: 12px;
 }
 
@@ -34,7 +34,7 @@ input:focus  {
 
 #content {
     width: 1100px;
-    height: 400px;
+    height: calc(100vh - 120px);;
     overflow-y: auto;
     word-wrap:break-word;
 }
@@ -48,13 +48,13 @@ input:focus  {
     float: left;
     height: 32px;
     line-height: 32px;
-    color: #2178db;
+    color:#2877d2;
     padding-right:5px;
     font-weight: bolder;
 }
 
 #input {
     float: left;
-    height: 30px;
+    height: 1.3em;
     width: 421px;
 }
