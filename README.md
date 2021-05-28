@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/badge/license-Apache-blue)]()[![build status](https://img.shields.io/badge/build-passing-brightgreen)]()[![](https://img.shields.io/badge/javascript-%3E%3D%20ES6-brightgreen)]()
 
-`js-ratel-client` 是一款运行在浏览器上的[ratel](https://github.com/ainilili/ratel)客户端。此客户端对原先的`ratel-client`功能进行了**100%**还原。
+`js-ratel-client` 是一款运行在浏览器上的[ratel](https://github.com/ainilili/ratel)客户端。此客户端对原先的`ratel-client`功能进行了100%还原。
 
 并且与其他客户端相比，其具有以下特点：
 
@@ -26,7 +26,7 @@ cd js-ratel-client
 
 1. 直接双击`index.html`使用浏览器打开页面进行游戏
 2. 部署在`tomacat`、`jetty`等应用服务器或者`nginx`代理服务器上，可提供外部访问进行游戏
-3. 访问已部署的地址（如：http://47.103.16.48:8080/js-client/）进行游戏
+3. 访问已部署的地址（[试玩地址](http://47.103.16.48:8080/js-client/)）进行游戏
 
 ### Usage
 
