@@ -1,6 +1,6 @@
 ## js-ratel-client
 
-[![](https://img.shields.io/badge/license-Apache-blue)]()[![build status](https://img.shields.io/badge/build-passing-brightgreen)]()[![](https://img.shields.io/badge/javascript-%3E%3D%20ES6-brightgreen)]()
+[![](https://img.shields.io/badge/license-Apache-blue)]() [![build status](https://img.shields.io/badge/build-passing-brightgreen)]() [![](https://img.shields.io/badge/javascript-%3E%3D%20ES6-brightgreen)]()
 
 `js-ratel-client` 是一款运行在浏览器上的[ratel](https://github.com/ainilili/ratel)客户端。此客户端对原先的`ratel-client`功能进行了100%还原。
 
@@ -46,5 +46,5 @@ cd js-ratel-client
 
 ### Contribution
 
-- 如果你有发现什么问题请提`ISSUE`
-- 如果你有好的想法，欢迎提供`PR`
+- 如果你有发现什么问题请提[ISSUE](https://github.com/marmot-z/js-ratel-client/issues)
+- 如果你有好的想法，欢迎提供[PR](https://github.com/marmot-z/js-ratel-client/pulls)
