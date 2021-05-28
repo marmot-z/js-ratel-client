@@ -15,7 +15,7 @@
     Utils.extend(Moveable, Toggleable);
     Utils.extend(Panel, Moveable);
 
-    var prefix = "[ratel]$ > ";
+    var prefix = '<div id="prefix" style="overflow:hidden;width:100%"><i class="fa fa-angle-right" aria-hidden="true" style="padding-right:5px"></i>';
 
     Panel.prototype.append = function(str) {
         var split = str.split("\n");
@@ -71,7 +71,7 @@
                     if (Utils.isEmpty(val)) return;
 
                     resolve(val);
-                    this.append(prefix + val);
+                    this.append(prefix + val + '</div>');
                     this.eventWrapper.removeEventListener(this.inputBox, "keypress");
                     this.inputBox.value = "";
                 }
