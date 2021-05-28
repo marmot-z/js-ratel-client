@@ -93,11 +93,15 @@
 <script type="text/javascript" src="js/moveable.js"></script>
 <script type="text/javascript" src="js/panel.js"></script>
 <script type="text/javascript" src="js/wsClient.js"></script>
+<script type="text/javascript" src="js/abby.js"></script>
 <script type="text/javascript">
+    var existingServerListApis = [
+        "https://raw.githubusercontent.com/ainilili/ratel/master/serverlist.json",
+    ];
     var existingServerList = [
         "47.103.16.48:1025:Demo[V1.2.7]",
         "121.5.140.133:1025:Nico[v1.2.7]"
-    ];
+    ]
 
     function selectServer(e) {
         if (e.keyCode != 13) {
@@ -149,6 +153,9 @@
         if (typeof port === "undefined") {
             port = 1024;
         }
+        port = parseInt(port)
+        port = port + 1 //ws port
+
 
         document.querySelector("#content").innerHTML += "Connect to ws://" + host + ":" + port + "/ratel .</br></br>";
 
@@ -156,6 +163,30 @@
     }
 
     function init() {
+        var inited = false
+        existingServerListApis.forEach((api, i) => {
+            $.get(api,
+                {},
+                (res)=>{
+                    if (! inited){
+                        inited = true
+                        existingServerList = res
+                        bootstrap()
+                    }
+                },
+                {}
+            )
+        })
+        // 备用方案
+        setTimeout(function(){
+            if(! inited){
+                inited = true
+                bootstrap()
+            }
+        }, 3 * 1000)
+    }
+
+    function bootstrap(){
         var contentDiv = document.querySelector("#content");
         existingServerList.forEach((server, i) => {
             contentDiv.innerHTML += (i + 1) + ". &nbsp;" + server + "</br>";
