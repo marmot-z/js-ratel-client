@@ -10,7 +10,7 @@
 		return this.code;
 	};
 
-	Handler.prototype.handle = function(terminate, clientTransferData) {};
+	Handler.prototype.handle = function(client, panel, clientTransferData) {};
 
 	window.Handler = Handler;
 } (this, this.Utils));
