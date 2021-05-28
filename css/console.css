@@ -1,0 +1,5 @@
+#console input, div {background: none;  color: #000; font-family: "PingFang SC";}
+#console {width: 800px; height: 1500px; border: 1px #ddd solid; top: 0px; right: 0px; z-index: 999; overflow:hidden; position: fixed; background: rgba(253, 253, 253, 0.993); overflow: hidden;}
+#console .tools{width: 100%; height: 27px; border-bottom: 1px #ddd solid;background: rgba(240, 240, 240, 0.993);}
+#console .tools .options {line-height: 25px; color: #333; float: left; font-size: 11px; padding-left: 10px; padding-right: 10px;}
+#console .tools .options .split{height: 15px; margin-top:5px; border-right:1px #ccc solid; float: right}
