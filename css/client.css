@@ -32,14 +32,6 @@ input:focus  {
     font-size: 15px
 }
 
-#bar {
-    height: 25px;
-    line-height: 25px;
-    background-color: #545252;
-    cursor: move;
-    user-select: none;
-}
-
 #content {
     width: 1100px;
     height: 400px;
