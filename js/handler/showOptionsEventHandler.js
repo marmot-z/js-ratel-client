@@ -29,7 +29,7 @@
         var i = s.toLowerCase();
 
         if (i == "exit" || i == "e") {
-            panel.append("Bye.");
+            client.close();
             return;
         }
 
