@@ -28,7 +28,20 @@
                 }
 
                 return false;
-            })
+            }, false);
+
+            var iframeEl = document.querySelector("iframe");
+            // 此时iframe早已加载完毕，无需监听加载完毕或失败事件
+            iframeEl.ownerDocument.addEventListener(eventType, (e) => {
+                e.preventDefault();
+
+                if (predicate.call(null, e, "show") && !this.visible) {
+                    this.show();
+                    this.visible = !this.visible;
+                }
+
+                return false;
+            }, true);
         } catch(e) {
             console.error(e);
             throw new Error("Unknown event type");

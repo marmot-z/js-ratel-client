@@ -19,13 +19,13 @@ O.prototype = {
 };
 $=(x)=>new O(document.querySelectorAll(x))
 ex=(q)=>q!=null&&q!=undefined&&q!=[]&&Object.keys(q).length>0
-fetcher=(x,method,qs,body,cb,h)=>{
+fetcher=(x,method,qs,body,cb,h, fail)=>{
     o={method,headers:h??{"Content-Type":"application/json"}}
     if(ex(body)){o.body = JSON.stringify(body)}
     if(ex(qs)){x+="?"+new URLSearchParams(qs).toString()}
-    fetch(x,o).then(res=>res.json()).then(cb);
+    fetch(x,o).then(res=>res.json().then(cb)).catch(fail);
 }
-$.get =(u,q,c,h)=>fetcher(u,"GET", q,null,c,h)
+$.get =(u,q,c,h,f)=>fetcher(u,"GET", q,null,c,h, f)
 $.delete =(u,q,c,h)=>fetcher(u,"DELETE", q,null,c,h)
 $.post=(u,b,c,h)=>fetcher(u,"POST",null,b,c,h)
 $.put=(u,b,c,h)=>fetcher(u,"PUT",null,b,c,h)

@@ -38,26 +38,10 @@
                 panel.waitInput()
                     .then(s => inputResolve(client, panel, obj, s));
                 return;
-
-                // TODO 出牌推荐
-                if (!("lastSellPokers" in obj) || !("lastSellClientId" in obj)) {
-                    panel.append("Current server version unsupport this feature, need more than v1.2.4.");
-                    panel.waitInput()
-                        .then(s => inputResolve(client, panel, obj, s));
-                    return;
-                }
-
-                var lastSellPokers = obj.lastSellPokers;
-                if (lastSellPokers == null || client.getClientId() == obj.lastSellClientId) {
-                    panel.append("Up to you !");
-                    panel.waitInput()
-                        .then(s => inputResolve(client, panel, obj, s));
-                    return;
-                }
             }
             // 出牌
             else {
-                var splits = s.split(" ");
+                var splits = s.split("");
                 var pokerAliases = [];
                 var access = true;
 
