@@ -94,8 +94,6 @@
 <script type="text/javascript" src="js/moveable.js"></script>
 <script type="text/javascript" src="js/panel.js"></script>
 <script type="text/javascript" src="js/wsClient.js"></script>
-<script type="text/javascript" src="js/abby.js"></script>
-
 <script type="text/javascript">
     var existingServerListApis = [
         "https://raw.githubusercontent.com/ainilili/ratel/master/serverlist.json",
@@ -103,7 +101,7 @@
     var existingServerList = [
         "47.103.16.48:1024:Demo[V1.2.7]",
         "121.5.140.133:1024:Nico[v1.2.7]"
-    ]
+    ];
 
     function selectServer(e) {
         if (e.keyCode != 13) {
@@ -163,39 +161,27 @@
 
         window.wsClient = new WsClient("ws://" + host + ":" + port + "/ratel")
     }
+
     function toVue(){
-        $("#site").set("src", "https://vuejs.org/");
-        $("#headTitle").html("Vue.js")
+        document.querySelector("#site").src = "https://vuejs.org/";
+        document.querySelector("#headTitle").innerHTML = "Vue.js";
         document.querySelector("link[rel*='icon']").href = "favicon-vue.png";
     }
+
     function toBaidu(){
-        $("#site").set("src", "https://baidu.com/");
-        $("#headTitle").html("百度一下，你就知道")
+        document.querySelector("#site").src = "https://baidu.com/";
+        document.querySelector("#headTitle").innerHTML = "百度一下，你就知道";
         document.querySelector("link[rel*='icon']").href = "favicon.ico";
     }
+
     function init() {
-        toBaidu()
-        var inited = false
+        toBaidu();
         existingServerListApis.forEach((api, i) => {
-            $.get(api,
-                {},
-                (res)=>{
-                    if (! inited){
-                        inited = true
-                        existingServerList = res
-                        bootstrap()
-                    }
-                },
-                {}
-            )
-        })
-        // 备用方案
-        setTimeout(function(){
-            if(! inited){
-                inited = true
-                bootstrap()
-            }
-        }, 3 * 1000)
+            fetch(api)
+            .then(response => response.json()
+                    .then(data => bootstrap(existingServerList = data)))
+            .catch(bootstrap);
+        });
     }
 
     function bootstrap(){
