@@ -32,10 +32,7 @@ cd js-ratel-client
 
 ### Usage
 
-1. 连接服务器，输入页面显示的服务地址编号选择公共服务器连接，或者输入`ip:port`形式服务器地址进行连接
-2. 同[ratel](https://github.com/ainilili/ratel)项目游戏规则
-3. 支持快捷键（`ctrl` + ⬆️/⬇️）展示/关闭游戏页面
-
+请看 [使用介绍](./usage.md)
 
 ### Roadmap
 

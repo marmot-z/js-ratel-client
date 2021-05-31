@@ -148,12 +148,26 @@
 		}
 	}
 
+	var timeoutPromise = (timeoutMillis) => {
+		return new Promise((resolve, reject) => {
+			var num = setTimeout(() => {
+				clearTimeout(num);
+				reject("Timeout");
+			}, timeoutMillis);
+		})
+	};
+
+	function timeout(asyncFn, millis) {
+		return Promise.race([asyncFn, timeoutPromise(millis)]);
+	}
+
 	var Utils = {
 		"Logger": Logger,
 		"HandlerLoader": HandlerLoader,
 		"extend": extend,
 		"isEmpty": isEmpty,
-		"format": format
+		"format": format,
+		"timeout": timeout
 	};
 
 	window.Utils = Utils;
