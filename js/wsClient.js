@@ -15,6 +15,8 @@
 			});
 	}
 
+        WsClient.version = "1.0.0";
+
 	var handlerPath = [
 		"./js/handler/clientNicknameSetEventHandler.js",
 		"./js/handler/clientExitEventHandler.js",
