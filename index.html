@@ -122,7 +122,16 @@
                 if (!Number.isNaN(i)) {
                     if (i > 0 && i <= existingServerList.length) {
                         var splits = existingServerList[i - 1].split(":");
-                        start(splits[0], splits[1]);
+                        var versionPattern = /\w+\[v(1\.\d\.\d)\]/i;
+                        if (versionPattern.test(splits[2])) {
+                            var version = versionPattern.exec(splits[2])[1];
+                            if (version > "1.2.6")
+                                start(splits[0], splits[1]);
+                            else {
+                                document.querySelector("#content").innerHTML += "Server version must great then v1.2.7 .</br>";
+                                return;
+                            }
+                        }
                     } else {
                         document.querySelector("#content").innerHTML += "Invalid option " + i + ", please input again.</br>";
                         return;
