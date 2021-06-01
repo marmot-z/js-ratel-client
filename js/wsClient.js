@@ -8,14 +8,18 @@
 		this.url = url;
 		this.panel = new Panel();
 		this.game = {user: {}, room: {lastPokers: null, lastSellClientNickname: null, lastSellClientType: null}, clientId: -1};
-		this.loadHandler()
-			.then(() => {
-				this.initProtobuf()
-					.then(() => this.initWebsocketConnect());
-			});
 	}
 
-        WsClient.version = "1.0.0";
+	WsClient.version = "1.0.0";
+
+	WsClient.prototype.init = function() {
+		return new Promise((resolve, reject) => {
+			this.loadHandler()
+				.then(() =>
+					this.initProtobuf()
+						.then(() => this.initWebsocketConnect(resolve, reject)));
+		});
+	};
 
 	var handlerPath = [
 		"./js/handler/clientNicknameSetEventHandler.js",
@@ -71,7 +75,7 @@
 		return this.protocol.init();
 	};
 
-	WsClient.prototype.initWebsocketConnect = function() {
+	WsClient.prototype.initWebsocketConnect = function(resolve, reject) {
 		if (window.WebSocket) {
 			this.socket = new WebSocket(this.url);
 
@@ -80,18 +84,15 @@
 			};
 			this.socket.onopen = (event) => {
 				log.info("websocket ({}) open", this.url);
-
-				// websocket客户端不主动和服务端通信，则服务端不能发送给客户端消息
-				// 这会导致前两个事件被丢失，所以此处默认加上此两个事件
-				// this.dispatch({code: ClientEventCodes.CODE_CLIENT_CONNECT, data: null, info: null});
-				// this.dispatch({code: ClientEventCodes.CODE_CLIENT_NICKNAME_SET, data: null, info: null});
+				resolve();
 			};
 			this.socket.onclose = (e) => {
 				log.info("websocket ({}) close", this.url);
+				reject(e);
 			};
 			this.socket.onerror = (e) => {
 				log.error("Occur a error {}", e);
-				this.panel.append("Connect " + this.url + " fail.");
+				reject(e);
 			};
 		} else {
 			log.error("current browser not support websocket");

@@ -15,9 +15,9 @@
         }
         var arr = Server.pattern.exec(s);
         this.host = arr[1];
-        this.port = arr[2];
-        this.name = arr[3];
-        this.version = parseInt(arr[4].replace(/\./g, ""));
+        this.port = parseInt(arr[2]) + 1;
+        if (arr[3]) this.name = arr[3];
+        if (arr[4]) this.version = parseInt(arr[4].replace(/\./g, ""));
     }
 
     Server.pattern = /([\w\.]+):(\d+)(?::(\w+)\[v(1\.\d\.\d)\])?/i;
@@ -29,6 +29,13 @@
         }
 
         return this.version - parseInt(otherVersion.replace(/\./g, ""));
+    };
+
+    Server.prototype.toString = function() {
+        var s = this.host + ":" + this.port;
+        if (this.name) s += ":" + this.name;
+        if (this.version) s += "[v" + this.version + "]";
+        return s;
     };
 
     // ---------------------------------------------------------------------------------------------
@@ -80,11 +87,11 @@
                         try {
                             server = new Server(existingServerList[i - 1]);
                             if (server.compareVersion(Server.requiredMinVersion) < 0) {
-                                contentEl.innerHTML += "Server version must >= v1.2.7. Please choose another server.</br>";
+                                contentEl.innerHTML += "Server version must >= v1.2.7. please choose another server.</br>";
                                 return;
                             }
                         } catch(e) {
-                            contentEl.innerHTML += "Illegal server address. Please choose another server.</br>";
+                            contentEl.innerHTML += "Illegal server address. please choose another server.</br>";
                             return;
                         }
                     } else {
@@ -105,9 +112,12 @@
             }
         }
 
-        start(server.host, server.port);
-
-        input.removeEventListener("keypress", selectServer, false);
+        start(server.host, server.port)
+            .then(() => input.removeEventListener("keypress", selectServer, false))
+            .catch(e => {
+                console.error(e);
+                contentEl.innerHTML += "Connect server [" + server.toString() + "] fail, please choose another server.</br>";
+            });
     }
 
     function start(host, port) {
@@ -115,14 +125,13 @@
             host = "127.0.0.1";
         }
         if (typeof port === "undefined") {
-            port = 1024;
+            port = 1025;
         }
-        // websocket port 在原先port基础上加1
-        port = parseInt(port) + 1;
 
         document.querySelector("#content").innerHTML += "Connect to ws://" + host + ":" + port + "/ratel .</br></br>";
 
-        window.wsClient = new WsClient("ws://" + host + ":" + port + "/ratel")
+        window.wsClient = new WsClient("ws://" + host + ":" + port + "/ratel");
+        return window.wsClient.init();
     }
 
     window.onload = function() {
