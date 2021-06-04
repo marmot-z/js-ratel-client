@@ -17,7 +17,8 @@
 
     var siteMap = {
         "baidu": {url: "https://baidu.com/", title: "百度一下，你就知道", icon: "favicon-baidu.ico"},
-        "vue": {url: "https://vuejs.org/", title: "Vue.js", icon: "favicon-vue.png"}
+        "vue": {url: "https://vuejs.org/", title: "Vue.js", icon: "favicon-vue.png"},
+        "bilibili": {url: "https://www.bilibili.com/", title: "哔哩哔哩 (゜-゜)つロ 干杯~-bilibili", icon: "favicon-bilibili.ico"}
     };
 
     var defaultSiteName = "baidu";
