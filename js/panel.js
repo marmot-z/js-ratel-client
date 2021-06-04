@@ -1,4 +1,4 @@
-;(function(window, EventWrapper, Toggleable, Moveable, Utils, POKER) {
+;(function(window, EventWrapper, Toggleable, Utils, Poker) {
     'use strict';
 
     function Panel() {
@@ -21,41 +21,6 @@
 
         this.contentDiv.innerHTML += html;
         this.contentDiv.scrollTop = this.contentDiv.scrollHeight;
-    };
-
-    Panel.prototype.generatePoker = function(pokers) {
-        if (!Array.isArray(pokers) || pokers.length == 0) {
-            return "";
-        }
-
-        var s = "<code>";
-        for (var i in pokers) {
-           s += i == 0 ? "┌─┐" : "─┐";
-        }
-        s += "\n";
-
-        for (var i in pokers) {
-            if (i == 0) s += "│";
-            s += POKER.LEVELS[pokers[i].level].symbol + (POKER.LEVELS[pokers[i].level].symbol.length == 1 ? " " : "") + "│";
-        }
-        s += "\n";
-
-        for (var i in pokers) {
-            if (i == 0) s += "│";
-            s += POKER.TYPES[pokers[i].type].symbol + " │";
-        }
-        s += "\n";
-
-        for (var i in pokers) {
-            s += i == 0 ? "└─┘" : "─┘";
-        }
-        s += "</code>";
-
-        return s;
-    };
-
-    Panel.prototype.setReadOnly = function (readOnly) {
-        this.inputBox.readOnly = readOnly;
     };
 
     var enterCode = 13;
@@ -89,4 +54,4 @@
     }
 
     window.Panel = Panel;
-} (this, this.EventWrapper, this.Toggleable, this.Moveable, this.Utils, this.POKER));
+} (this, this.EventWrapper, this.Toggleable, this.Utils, this.Poker));

@@ -1,4 +1,4 @@
-;(function(window, Utils, Handler, ClientEventCodes, ServerEventCodes) {
+;(function(window, Utils, Handler, ClientEventCodes, ServerEventCodes, Poker) {
     'use strict';
 
     function GameStartingEventHandler() {
@@ -12,7 +12,7 @@
         panel.append("");
         panel.append("Your cards are");
         var obj = JSON.parse(clientTransferData.data);
-        panel.append(panel.generatePoker(obj.pokers));
+        panel.append(Poker.toString(obj.pokers));
 
         client.dispatch({code: ClientEventCodes.CODE_GAME_LANDLORD_ELECT, data: clientTransferData.data, info: null});
     };
@@ -21,4 +21,4 @@
         window._handlers_ = [];
     }
     window._handlers_.push(new GameStartingEventHandler());
-} (this, this.Utils, this.Handler, this.ClientEventCodes, this.ServerEventCodes));
+} (this, this.Utils, this.Handler, this.ClientEventCodes, this.ServerEventCodes, this.Poker));

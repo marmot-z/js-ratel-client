@@ -1,4 +1,4 @@
-;(function(window, Utils, Handler, ClientEventCodes, ServerEventCodes) {
+;(function(window, Utils, Handler, ClientEventCodes, ServerEventCodes, Poker) {
     'use strict';
 
     function GamePokerPlayEventHandler() {
@@ -11,7 +11,7 @@
         var obj = JSON.parse(clientTransferData.data);
 
         panel.append("It's your turn to play, your cards are as follows: ");
-        panel.append(panel.generatePoker(obj.pokers));
+        panel.append(Poker.toString(obj.pokers));
         panel.append("Please enter the combination you came up with (enter [exit|e] to exit current room, enter [pass|p] to jump current round, enter [view|v] to show all valid combinations.)");
 
         panel.waitInput()
@@ -47,7 +47,7 @@
 
                 for (var str of splits) {
                     if (str != "    " || str != "\t") {
-                        if (!POKER.levelContains(str)) {
+                        if (!Poker.isVaildAlias(str)) {
                             access = false;
                             break;
                         }
@@ -63,7 +63,7 @@
 
                     if (client.getLastPokers() != null) {
                         panel.append(client.getLastSellClientNickname() + "[" + client.getLastSellClientType() + "] played: ");
-                        panel.append(panel.generatePoker(client.getLastPokers()));
+                        panel.append(Poker.toString(client.getLastPokers()));
                     }
 
                     panel.waitInput()
@@ -77,4 +77,4 @@
         window._handlers_ = [];
     }
     window._handlers_.push(new GamePokerPlayEventHandler());
-} (this, this.Utils, this.Handler, this.ClientEventCodes, this.ServerEventCodes));
+} (this, this.Utils, this.Handler, this.ClientEventCodes, this.ServerEventCodes, this.Poker));

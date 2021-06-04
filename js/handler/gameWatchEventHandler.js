@@ -1,4 +1,4 @@
-;(function(window, Utils, Handler, ClientEventCodes, ServerEventCodes) {
+;(function(window, Utils, Handler, ClientEventCodes, ServerEventCodes, Poker) {
     'use strict';
 
     function GameWatchEventHandler() {
@@ -87,14 +87,14 @@
         var obj = JSON.parse(rawData);
 
         panel.append(Utils.format("Player [{}] has become the landlord and gotten three extra cards:", obj.landlord));
-        panel.append(panel.generatePoker(obj.additionalPokers));
+        panel.append(Poker.toString(obj.additionalPokers));
     }
 
     function printPlayPokers(panel, rawData) {
         var obj = JSON.parse(rawData);
 
         panel.append(Utils.format("Player [{}] played::", obj.clientNickname));
-        panel.append(panel.generatePoker(obj.pokers));
+        panel.append(Poker.toString(obj.pokers));
     }
 
     function printPlayPass(panel, rawData) {
@@ -131,4 +131,4 @@
         window._handlers_ = [];
     }
     window._handlers_.push(new GameWatchEventHandler());
-} (this, this.Utils, this.Handler, this.ClientEventCodes, this.ServerEventCodes));
+} (this, this.Utils, this.Handler, this.ClientEventCodes, this.ServerEventCodes, this.Poker));

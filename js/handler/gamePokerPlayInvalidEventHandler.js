@@ -1,4 +1,4 @@
-;(function(window, Utils, Handler, ClientEventCodes, ServerEventCodes) {
+;(function(window, Utils, Handler, ClientEventCodes, ServerEventCodes, Poker) {
     'use strict';
 
     function GamePokerPlayInvalidEventHandler() {
@@ -12,7 +12,7 @@
 
         if (client.getLastPokers() != null) {
             panel.append(Utils.format("{}[{}] played: ", client.getLastSellClientNickname(), client.getLastSellClientType()));
-            panel.append(panel.generatePoker(client.getLastPokers()));
+            panel.append(Poker.toString(client.getLastPokers()));
         }
 
         client.send(ServerEventCodes.CODE_GAME_POKER_PLAY_REDIRECT, null, null);
@@ -22,4 +22,4 @@
         window._handlers_ = [];
     }
     window._handlers_.push(new GamePokerPlayInvalidEventHandler());
-} (this, this.Utils, this.Handler, this.ClientEventCodes, this.ServerEventCodes));
+} (this, this.Utils, this.Handler, this.ClientEventCodes, this.ServerEventCodes, this.Poker));

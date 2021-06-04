@@ -1,4 +1,4 @@
-;(function(window, Utils, Handler, ClientEventCodes, ServerEventCodes) {
+;(function(window, Utils, Handler, ClientEventCodes, ServerEventCodes, Poker) {
     'use strict';
 
     function ShowPokersEventHandler() {
@@ -15,7 +15,7 @@
         client.setLastSellClientNickname(obj.clientNickname);
 
         panel.append(obj.clientNickname + "[" + obj.clientType + "] played:");
-        panel.append(panel.generatePoker(obj.pokers));
+        panel.append(Poker.toString(obj.pokers));
 
         if ("sellClinetNickname" in obj) {
             panel.append("Next player is " + obj.sellClinetNickname + ". Please wait for him to play his combination.");
@@ -26,4 +26,4 @@
         window._handlers_ = [];
     }
     window._handlers_.push(new ShowPokersEventHandler());
-} (this, this.Utils, this.Handler, this.ClientEventCodes, this.ServerEventCodes));
+} (this, this.Utils, this.Handler, this.ClientEventCodes, this.ServerEventCodes, this.Poker));
