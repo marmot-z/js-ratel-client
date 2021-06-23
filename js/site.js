@@ -23,5 +23,15 @@
 
     var defaultSiteName = "baidu";
 
+    document.getElementById("switchWebsite").addEventListener("keyup", function(event){
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            if(this.value){
+                document.querySelector("#site").src = this.value;
+            }
+        }
+    })
+
+
     window.defaultSite = new Site(siteMap[defaultSiteName]);
 } (this));
