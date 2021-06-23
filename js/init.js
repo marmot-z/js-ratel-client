@@ -43,12 +43,18 @@
 
     function loadServerList() {
         existingServerListApis.forEach((api, i) => {
-            Utils.timeout(() => {
-                return fetch(api)
-                        .then(response => response.json())
-                        .catch(() => []);
-            }, defaultLoadTimeout)
-            .then(data => showServerList(existingServerList = data.length > 0 ? data : existingServerList))
+            Utils.timeout(new Promise((resolve, reject) => {
+                fetch(api)
+                .then(response => {
+                    resolve(response.json())
+                })
+                .catch((e) => {
+                    reject(e)
+                });
+            }), defaultLoadTimeout)
+            .then(data => {
+                showServerList(existingServerList = data.length > 0 ? data : existingServerList)
+            })
             .catch(showServerList);
         });
     }
