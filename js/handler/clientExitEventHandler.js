@@ -14,6 +14,7 @@
         panel.append(role + " left the room. Room disbanded!\n");
 
         client.dispatch({code: ClientEventCodes.CODE_SHOW_OPTIONS, data: null, info: null});
+        window.imClient.leave()
     };
 
     if (!window._handlers_) {

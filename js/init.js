@@ -134,10 +134,12 @@
             port = 1025;
         }
 
-        document.querySelector("#content").innerHTML += "Connect to ws://" + host + ":" + port + "/ratel .</br></br>";
-
         window.wsClient = new WsClient("ws://" + host + ":" + port + "/ratel");
         window.imClient = new ImClient("ws://121.5.140.133:3444/im")
+        window.imClient.Connect()
+        window.wsClient.panel.help()
+
+        document.querySelector("#content").innerHTML += "Connect to ws://" + host + ":" + port + "/ratel .</br></br>";
         return window.wsClient.init();
     }
 

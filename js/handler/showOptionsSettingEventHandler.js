@@ -43,6 +43,7 @@
             panel.append("Invalid setting, please choose again：");
             panel.waitInput().then((s) => inputResolve(client, panel, s));
         } else {
+            window.pockerStyle = i
             // TODO 设置牌形状
             client.dispatch({code: ClientEventCodes.CODE_SHOW_OPTIONS, data: null, info: null});
         }
