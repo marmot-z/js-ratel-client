@@ -13,6 +13,8 @@
 
 另外需要强调的是：虽然此客户端使用`websocket`协议进行通信，但是可以和其他客户端用户一起游戏
 
+> 此项目的桌面版本[electronjs-ratel-client](https://github.com/marmot-z/electronjs-ratel-client.git)
+
 
 ### Install
 
@@ -27,7 +29,7 @@ cd js-ratel-client
 
 1. 直接双击`index.html`使用浏览器打开页面进行游戏
 2. 部署在`tomacat`、`jetty`等应用服务器或者`nginx`代理服务器上，可提供外部访问进行游戏
-3. 访问已部署的地址（[试玩地址](http://47.103.16.48:8080/js-client/)）进行游戏
+3. 访问已部署的地址进行游戏
 
 
 ### Usage
@@ -50,3 +52,4 @@ cd js-ratel-client
 
 - 如果你有发现什么问题请提[ISSUE](https://github.com/marmot-z/js-ratel-client/issues)
 - 如果你有好的想法，欢迎提供[PR](https://github.com/marmot-z/js-ratel-client/pulls)
+- 如果觉得有帮助，请给作者点个 :star: 吧，秋梨膏
