@@ -29,8 +29,8 @@ cd js-ratel-client
 #### 部署
 
 1. 直接双击`index.html`使用浏览器打开页面进行游戏
-2. 部署在`tomacat`、`jetty`等应用服务器或者`nginx`代理服务器上，可提供外部访问进行游戏
-3. 访问已部署的地址进行游戏
+2. 或者部署在`tomacat`、`jetty`等应用服务器或者`nginx`代理服务器上，可提供外部访问进行游戏
+3. 或者访问 [http://ratel.isnico.com](http://ratel.isnico.com) 进行游戏
 
 
 ### Usage
