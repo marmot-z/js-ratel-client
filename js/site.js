@@ -16,11 +16,12 @@
     };
 
     var siteMap = {
+	"w3c": {url: "https://www.w3school.com.cn/", title: "W3C", icon: ""},
         "vue": {url: "https://vuejs.org/", title: "Vue.js", icon: "favicon-vue.png"},
         "bilibili": {url: "https://www.bilibili.com/", title: "哔哩哔哩 (゜-゜)つロ 干杯~-bilibili", icon: "favicon-bilibili.ico"}
     };
 
-    var defaultSiteName = "bilibili";
+    var defaultSiteName = "w3c";
 
     document.getElementById("switchWebsite").addEventListener("keyup", function(event){
         event.preventDefault();
