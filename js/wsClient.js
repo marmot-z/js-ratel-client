@@ -11,7 +11,6 @@
 	}
 
 	WsClient.version = "1.0.0";
-
 	WsClient.prototype.init = function() {
 		return new Promise((resolve, reject) => {
 			this.loadHandler()

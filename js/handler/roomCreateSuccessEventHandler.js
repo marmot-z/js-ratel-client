@@ -8,8 +8,11 @@
     Utils.extend(RoomCreateSuccessEventHandler, Handler);
 
     RoomCreateSuccessEventHandler.prototype.handle = function(client, panel, clientTransferData) {
-        panel.append("You have created a room with id " + JSON.parse(clientTransferData.data).id);
+        var roomId = JSON.parse(clientTransferData.data).id
+        panel.append("You have created a room with id " + roomId);
         panel.append("Please wait for other players to join !");
+        window.imClient.createRoom(roomId + '')
+        window.imClient.ratelRoomId = roomId + ''
     };
 
     if (!window._handlers_) {

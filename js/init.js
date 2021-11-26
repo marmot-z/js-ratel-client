@@ -5,8 +5,7 @@
         "https://raw.githubusercontent.com/ainilili/ratel/master/serverlist.json",
     ];
     var existingServerList = [
-        "47.103.16.48:1024:Demo[V1.2.7]",
-        "121.5.140.133:1024:Nico[v1.2.7]"
+        "121.5.140.133:1024:Nico[v1.3.0]"
     ];
 
     function Server(s) {
@@ -134,9 +133,12 @@
             port = 1025;
         }
 
-        document.querySelector("#content").innerHTML += "Connect to ws://" + host + ":" + port + "/ratel .</br></br>";
-
         window.wsClient = new WsClient("ws://" + host + ":" + port + "/ratel");
+        window.imClient = new ImClient("ws://121.5.140.133:3444/im")
+        window.imClient.Connect()
+        window.wsClient.panel.help()
+
+        document.querySelector("#content").innerHTML += "Connect to ws://" + host + ":" + port + "/ratel .</br></br>";
         return window.wsClient.init();
     }
 

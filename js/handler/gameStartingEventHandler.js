@@ -13,7 +13,9 @@
         panel.append("Your cards are");
         var obj = JSON.parse(clientTransferData.data);
         panel.append(Poker.toString(obj.pokers));
-
+    
+        window.imClient.ratelRoomId = obj.roomId + ''
+        window.imClient.roomList()
         client.dispatch({code: ClientEventCodes.CODE_GAME_LANDLORD_ELECT, data: clientTransferData.data, info: null});
     };
 

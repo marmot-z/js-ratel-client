@@ -14,6 +14,8 @@
         if(client.getClientId() == joinClientId) {
             panel.append("You have joined room：" + obj.roomId + ". There are " + obj.roomClientCount + " players in the room now.");
             panel.append("Please wait for other players to join. The game would start at three players!");
+            window.imClient.ratelRoomId = obj.roomId + ''
+            window.imClient.roomList()
         }else {
             panel.append(obj.clientNickname + " joined room, there are currently " + obj.roomClientCount + " in the room.");
         }

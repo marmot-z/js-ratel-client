@@ -79,25 +79,32 @@
         }
 
         var s = "<code>";
-        for (var i in pokers) {
-           s += i == 0 ? "┌─┐" : "─┐";
-        }
-        s += "\n";
 
-        for (var i in pokers) {
-            if (i == 0) s += "│";
-            s += LEVELS[pokers[i].level].symbol + (LEVELS[pokers[i].level].symbol.length == 1 ? " " : "") + "│";
-        }
-        s += "\n";
+        if(! window.pockerStyle || window.pockerStyle == 1){
+            for (var i in pokers) {
+            s += i == 0 ? "┌─┐" : "─┐";
+            }
+            s += "\n";
 
-        for (var i in pokers) {
-            if (i == 0) s += "│";
-            s += TYPES[pokers[i].type].symbol + " │";
-        }
-        s += "\n";
+            for (var i in pokers) {
+                if (i == 0) s += "│";
+                s += LEVELS[pokers[i].level].symbol + (LEVELS[pokers[i].level].symbol.length == 1 ? " " : "") + "│";
+            }
+            s += "\n";
 
-        for (var i in pokers) {
-            s += i == 0 ? "└─┘" : "─┘";
+            for (var i in pokers) {
+                if (i == 0) s += "│";
+                s += TYPES[pokers[i].type].symbol + " │";
+            }
+            s += "\n";
+
+            for (var i in pokers) {
+                s += i == 0 ? "└─┘" : "─┘";
+            }
+        }else{
+            for (var i in pokers) {
+                s += LEVELS[pokers[i].level].symbol + " "
+            }
         }
         s += "</code>";
 
