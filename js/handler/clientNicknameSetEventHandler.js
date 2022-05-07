@@ -26,7 +26,7 @@
             }
 
             client.setUserName(s);
-            window.imClient.setNickname(s)
+            //window.imClient.setNickname(s)
             client.send(ServerEventCodes.CODE_CLIENT_NICKNAME_SET, s);
         });
     };
