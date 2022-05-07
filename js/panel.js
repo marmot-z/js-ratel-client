@@ -44,7 +44,7 @@
                 if (e.keyCode == enterCode) {
                     if (Utils.isEmpty(val)) return;
                     if (val.startsWith('~')){
-                        window.imClient.sendMsg(val.substring(1))
+                        //window.imClient.sendMsg(val.substring(1))
                     }else if(val == 'clear'){
                         this.clear()
                     }else if(val == 'help'){
